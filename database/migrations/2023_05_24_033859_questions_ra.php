@@ -13,7 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create("questions_ra", function (Blueprint $table) {
+            $table->id();
+            $table->text("question");
+            $table->char("key");
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists("questions_ra");
     }
 };

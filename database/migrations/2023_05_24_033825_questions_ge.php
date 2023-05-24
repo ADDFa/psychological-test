@@ -13,7 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create("questions_ge", function (Blueprint $table) {
+            $table->id();
+            $table->string("first_word");
+            $table->string("second_word");
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists("questions_ge");
     }
 };

@@ -13,7 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create("answer_key_ge", function (Blueprint $table) {
+            $table->id();
+            $table->foreignId("question_ge_id")->constrained("questions_ge");
+            $table->string("key");
+            $table->enum("value", [1, 2]);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists("answer_key_ge");
     }
 };

@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create("questions_papi", function (Blueprint $table) {
+            $table->id();
+            $table->text("first_question");
+            $table->enum("first_arrow", ["left", "right", "top-right", "bottom-left"]);
+            $table->text("second_question");
+            $table->enum("second_arrow", ["left", "right", "top-right", "bottom-left"]);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists("questions_papi");
     }
 };

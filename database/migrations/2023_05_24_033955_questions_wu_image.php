@@ -13,7 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create("questions_wu_image", function (Blueprint $table) {
+            $table->foreignId("question_fa_id")->constrained("questions_fa");
+            $table->foreignId("image_id")->constrained("images");
+            $table->char("key");
+            $table->primary(["question_fa_id", "image_id"]);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists("questions_wu_image");
     }
 };

@@ -13,7 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create("questions_wa", function (Blueprint $table) {
+            $table->id();
+            $table->string("option_a");
+            $table->string("option_b");
+            $table->string("option_c");
+            $table->string("option_d");
+            $table->string("option_e");
+            $table->char("key");
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists("questions_wa");
     }
 };
