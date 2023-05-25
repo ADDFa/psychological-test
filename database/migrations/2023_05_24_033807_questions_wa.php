@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("option_c");
             $table->string("option_d");
             $table->string("option_e");
-            $table->char("key");
+            $table->string("key");
             $table->timestamps();
         });
     }
