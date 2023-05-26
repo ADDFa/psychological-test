@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
+use App\Models\MeWord;
 use App\Models\Questions\Me;
 use Illuminate\Http\Request;
 
@@ -16,16 +17,6 @@ class MeController extends Controller
     public function index()
     {
         return response()->json(Me::all());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -51,17 +42,6 @@ class MeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -82,5 +62,10 @@ class MeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function words()
+    {
+        return response()->json(MeWord::with("subWords")->get());
     }
 }

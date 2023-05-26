@@ -9,12 +9,7 @@ use Illuminate\Validation\Rule;
 
 class ExamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    private function checkType(Request $request)
     {
         $validator = Validator::make($request->all(), [
             "type"  => [
@@ -23,20 +18,21 @@ class ExamController extends Controller
             ]
         ]);
 
-        if ($validator->fails()) return response()->json(Api::errors($validator));
-
-        $controller = ucwords($request->type) . "Controller";
-        return app()->call("App\Http\Controllers\Questions\\$controller@index");
+        return $validator->fails() ? response()->json(Api::errors($validator)) : true;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        $isType = $this->checkType($request);
+        if ($isType !== true) return $isType;
+
+        $controller = ucwords($request->type) . "Controller";
+        return app()->call("App\Http\Controllers\Questions\\$controller@index");
     }
 
     /**
@@ -58,18 +54,7 @@ class ExamController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return ["test" => $id];
     }
 
     /**
@@ -93,5 +78,13 @@ class ExamController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function image(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            "file_name" => "required|string"
+        ]);
+        // 
     }
 }

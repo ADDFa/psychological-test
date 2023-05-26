@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\Questions\MeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::controller(ExamController::class)->group(function () {
-    Route::get("question", "index");
+    Route::get("/question", "index");
+    Route::get("/question/image", "show");
 });
+
+Route::get("question-me/words", [MeController::class, "words"]);

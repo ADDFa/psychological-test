@@ -15,7 +15,7 @@ class WuController extends Controller
      */
     public function index()
     {
-        return response()->json(Wu::all());
+        return response()->json(Wu::with("images")->get());
     }
 
     /**

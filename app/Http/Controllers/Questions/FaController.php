@@ -15,7 +15,7 @@ class FaController extends Controller
      */
     public function index()
     {
-        return response()->json(Fa::all());
+        return response()->json(Fa::with("images")->get());
     }
 
     /**
