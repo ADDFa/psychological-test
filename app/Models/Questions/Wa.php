@@ -10,4 +10,5 @@ class Wa extends Model
     use HasFactory;
 
     protected $table = "questions_wa";
+    protected $hidden = ["key"];
 }

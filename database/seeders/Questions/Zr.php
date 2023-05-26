@@ -24,7 +24,7 @@ class Zr extends Seeder
                 "fifth_number"      => 18,
                 "sixth_number"      => 21,
                 "seventh_number"    => 24,
-                "key"               => 27
+                "key"               => md5(27)
             ],
 
             [
@@ -35,7 +35,7 @@ class Zr extends Seeder
                 "fifth_number"      => 21,
                 "sixth_number"      => 22,
                 "seventh_number"    => 24,
-                "key"               => 25
+                "key"               => md5(25)
             ],
 
             [
@@ -46,7 +46,7 @@ class Zr extends Seeder
                 "fifth_number"      => 25,
                 "sixth_number"      => 24,
                 "seventh_number"    => 28,
-                "key"               => 27
+                "key"               => md5(27)
             ],
 
             [
@@ -57,7 +57,7 @@ class Zr extends Seeder
                 "fifth_number"      => 18,
                 "sixth_number"      => 14,
                 "seventh_number"    => 29,
-                "key"               => 15
+                "key"               => md5(15)
             ],
 
             [
@@ -68,7 +68,7 @@ class Zr extends Seeder
                 "fifth_number"      => 20,
                 "sixth_number"      => 22,
                 "seventh_number"    => 44,
-                "key"               => 46
+                "key"               => md5(46)
             ],
 
             [
@@ -79,7 +79,7 @@ class Zr extends Seeder
                 "fifth_number"      => 17,
                 "sixth_number"      => 11,
                 "seventh_number"    => 18,
-                "key"               => 10
+                "key"               => md5(10)
             ],
 
             [
@@ -90,7 +90,7 @@ class Zr extends Seeder
                 "fifth_number"      => 30,
                 "sixth_number"      => 15,
                 "seventh_number"    => 45,
-                "key"               => 42
+                "key"               => md5(42)
             ],
 
             [
@@ -101,7 +101,7 @@ class Zr extends Seeder
                 "fifth_number"      => 9,
                 "sixth_number"      => 11,
                 "seventh_number"    => 14,
-                "key"               => 7
+                "key"               => md5(7)
             ],
 
             [
@@ -112,7 +112,7 @@ class Zr extends Seeder
                 "fifth_number"      => 4,
                 "sixth_number"      => 2,
                 "seventh_number"    => 4,
-                "key"               => 5
+                "key"               => md5(5)
             ],
 
             [
@@ -123,7 +123,7 @@ class Zr extends Seeder
                 "fifth_number"      => 21,
                 "sixth_number"      => 15,
                 "seventh_number"    => 22,
-                "key"               => 14
+                "key"               => md5(14)
             ],
 
             [
@@ -134,7 +134,7 @@ class Zr extends Seeder
                 "fifth_number"      => 22,
                 "sixth_number"      => 20,
                 "seventh_number"    => 10,
-                "key"               => 8
+                "key"               => md5(8)
             ],
 
             [
@@ -145,7 +145,7 @@ class Zr extends Seeder
                 "fifth_number"      => 11,
                 "sixth_number"      => 12,
                 "seventh_number"    => 11,
-                "key"               => 14
+                "key"               => md5(14)
             ],
 
             [
@@ -156,7 +156,7 @@ class Zr extends Seeder
                 "fifth_number"      => 28,
                 "sixth_number"      => 33,
                 "seventh_number"    => 39,
-                "key"               => 45
+                "key"               => md5(45)
             ],
 
             [
@@ -167,7 +167,7 @@ class Zr extends Seeder
                 "fifth_number"      => 21,
                 "sixth_number"      => 17,
                 "seventh_number"    => 68,
-                "key"               => 63
+                "key"               => md5(63)
             ],
 
             [
@@ -178,7 +178,7 @@ class Zr extends Seeder
                 "fifth_number"      => 13,
                 "sixth_number"      => 16,
                 "seventh_number"    => 8,
-                "key"               => 12
+                "key"               => md5(12)
             ],
 
             [
@@ -189,7 +189,7 @@ class Zr extends Seeder
                 "fifth_number"      => 35,
                 "sixth_number"      => 48,
                 "seventh_number"    => 63,
-                "key"               => 80
+                "key"               => md5(80)
             ],
 
             [
@@ -200,7 +200,7 @@ class Zr extends Seeder
                 "fifth_number"      => 8,
                 "sixth_number"      => 13,
                 "seventh_number"    => 7,
-                "key"               => 14
+                "key"               => md5(14)
             ],
 
             [
@@ -211,7 +211,7 @@ class Zr extends Seeder
                 "fifth_number"      => 6,
                 "sixth_number"      => 3,
                 "seventh_number"    => 9,
-                "key"               => 12
+                "key"               => md5(12)
             ],
 
             [
@@ -222,7 +222,7 @@ class Zr extends Seeder
                 "fifth_number"      => 30,
                 "sixth_number"      => 23,
                 "seventh_number"    => 69,
-                "key"               => 63
+                "key"               => md5(63)
             ],
 
             [
@@ -233,7 +233,7 @@ class Zr extends Seeder
                 "fifth_number"      => 11,
                 "sixth_number"      => 77,
                 "seventh_number"    => 70,
-                "key"               => 10
+                "key"               => md5(10)
             ]
         ]);
     }

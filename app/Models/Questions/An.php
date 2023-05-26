@@ -10,4 +10,5 @@ class An extends Model
     use HasFactory;
 
     protected $table = "questions_an";
+    protected $hidden = ["key"];
 }
