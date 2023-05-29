@@ -36,7 +36,9 @@ class Run extends Seeder
             Se::class,
             Wa::class,
             Wu::class,
-            Zr::class
+            Zr::class,
+            Exams::class,
+            ExamTimes::class
         ]);
     }
 }

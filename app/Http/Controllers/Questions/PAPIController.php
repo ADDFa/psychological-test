@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Questions;
 
-use App\Http\Res\Api;
+use App\Http\Controllers\Controller;
+use App\Models\Questions\PAPI;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
-class ExamController extends Controller
+class PAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return app()->call("App\Http\Controllers\Questions\\{$request->controller}@index");
+        return response()->json(PAPI::all());
     }
 
     /**
@@ -33,22 +32,22 @@ class ExamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Questions\PAPI  $pAPI
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PAPI $pAPI)
     {
-        return ["test" => $id];
+        // 
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Questions\PAPI  $pAPI
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, PAPI $pAPI)
     {
         //
     }
@@ -56,19 +55,11 @@ class ExamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Questions\PAPI  $pAPI
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PAPI $pAPI)
     {
         //
-    }
-
-    public function image(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            "file_name" => "required|string"
-        ]);
-        // 
     }
 }
