@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -22,43 +21,43 @@ class ExamTimes extends Seeder
             ],
             [
                 "exam"  => "wa",
-                "time"  => 10
+                "time"  => 6
             ],
             [
                 "exam"  => "an",
-                "time"  => 10
+                "time"  => 7
             ],
             [
                 "exam"  => "ge",
-                "time"  => 6
+                "time"  => 8
             ],
             [
                 "exam"  => "ra",
-                "time"  => 6
+                "time"  => 10
             ],
             [
                 "exam"  => "zr",
-                "time"  => 6
+                "time"  => 7
             ],
             [
                 "exam"  => "fa",
-                "time"  => 6
+                "time"  => 9
             ],
             [
                 "exam"  => "wu",
-                "time"  => 6
+                "time"  => 9
             ],
             [
                 "exam"  => "me",
-                "time"  => 6
+                "time"  => 7
             ],
             [
                 "exam"  => "msdt",
-                "time"  => 6
+                "time"  => 25
             ],
             [
                 "exam"  => "papi",
-                "time"  => 6
+                "time"  => 20
             ]
         ]);
     }

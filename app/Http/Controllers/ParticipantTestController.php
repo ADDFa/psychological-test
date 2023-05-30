@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Res\Api;
+use App\Models\ExamTime;
 use App\Models\ParticipantTest;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,37 @@ class ParticipantTestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $time = time();
+        $participant = ParticipantTest::where("user_id", $request->user->id)->orderByDesc("end_exam_time")->first();
+        $noTest = $participant ? ($participant->no_test + 1) : 1;
+        $examTimes = ExamTime::all(["exam", "time"]);
+
+        // check tes yang sedang berlangsung
+        if ($participant && $participant->end_exam_time > $time) {
+            return response()->json([
+                "message"   => "Tes sedang berlangsung",
+                "no_test"   => $participant->no_test
+            ]);
+        }
+
+        function changeTime(&$time, $value)
+        {
+            $time += $value;
+        }
+
+        $participantTest = [];
+        foreach ($examTimes as $examTime) {
+            changeTime($time, (60 * $examTime->time));
+
+            array_push($participantTest, [
+                "no_test"       => $noTest,
+                "user_id"       => $request->user->id,
+                "end_exam_time" => $time,
+                "exam"          => $examTime->exam
+            ]);
+        }
+
+        return ParticipantTest::insert($participantTest) ? response()->json(["no_test" => $noTest]) : Api::message("Gagal mendaftarkan peserta test", 500);
     }
 
     /**

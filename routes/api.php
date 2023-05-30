@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ParticipantTestController;
 use App\Http\Controllers\Questions\MeController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\ExamMiddleware;
@@ -22,6 +23,10 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     Route::controller(ExamController::class)->middleware(ExamMiddleware::class)->group(function () {
         Route::get("/question", "index");
         Route::get("/question/image", "show");
+    });
+
+    Route::controller(ParticipantTestController::class)->group(function () {
+        Route::get("/no-test", "store");
     });
 
     Route::get("question-me/words", [MeController::class, "words"]);
