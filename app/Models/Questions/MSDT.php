@@ -9,5 +9,6 @@ class MSDT extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_msdt";
+    protected $table = "msdt_questions";
+    protected $guarded = ["id"];
 }

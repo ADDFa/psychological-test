@@ -9,5 +9,7 @@ class Zr extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_zr";
+    protected $table = "zr_questions";
+    protected $guarded = ["id"];
+    protected $hidden = ["key"];
 }

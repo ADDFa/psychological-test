@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId("user_id")->constrained("users");
             $table->string("username")->unique();
             $table->string("password");
-            $table->enum("role", ["admin", "user", "supervisor"]);
+            $table->enum("role", ["admin", "user"])->default("user");
             $table->timestamps();
         });
     }

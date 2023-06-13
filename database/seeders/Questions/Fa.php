@@ -15,179 +15,117 @@ class Fa extends Seeder
      */
     public function run()
     {
-        DB::table("images")->insert([
+        DB::table("fa_image_questions")->insert([
             [
-                "filename"  => "fa/question1.jpg"
+                "question"  => "questions/question-image1.jpg"
             ],
             [
-                "filename"  => "fa/question2.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image1.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image2.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image3.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image4.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image5.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image6.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image7.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image8.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image9.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image10.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image11.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image12.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image13.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image14.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image15.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image16.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image17.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image18.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image19.jpg"
-            ],
-            [
-                "filename"  => "fa/question-image20.jpg"
+                "question"  => "questions/question-image2.jpg"
             ]
         ]);
 
-        DB::table("questions_fa")->insert([
-            ["question" => 1],
-            ["question" => 2]
-        ]);
+        DB::table("fa_questions")->insert([
+            // TODO: Soal 1
+            [
+                "question"              => "questions/question-fa1.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("a")
+            ],
+            [
+                "question"              => "questions/question-fa2.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("c")
+            ],
+            [
+                "question"              => "questions/question-fa3.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("b")
+            ],
+            [
+                "question"              => "questions/question-fa4.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("a")
+            ],
+            [
+                "question"              => "questions/question-fa5.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("d")
+            ],
+            [
+                "question"              => "questions/question-fa6.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("b")
+            ],
+            [
+                "question"              => "questions/question-fa7.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("c")
+            ],
+            [
+                "question"              => "questions/question-fa8.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("e")
+            ],
+            [
+                "question"              => "questions/question-fa9.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("e")
+            ],
+            [
+                "question"              => "questions/question-fa10.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("d")
+            ],
+            [
+                "question"              => "questions/question-fa11.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("e")
+            ],
+            [
+                "question"              => "questions/question-fa12.jpg",
+                "fa_image_question_id"  => 1,
+                "key"               => md5("b")
+            ],
 
-        DB::table("questions_fa_image")->insert([
+            // TODO: Soal 2
             [
-                "question_fa_id"    => 1,
-                "image_id"          => 3,
+                "question"              => "questions/question-fa13.jpg",
+                "fa_image_question_id"  => 2,
+                "key"               => md5("d")
+            ],
+            [
+                "question"              => "questions/question-fa14.jpg",
+                "fa_image_question_id"  => 2,
+                "key"               => md5("c")
+            ],
+            [
+                "question"              => "questions/question-fa15.jpg",
+                "fa_image_question_id"  => 2,
+                "key"               => md5("b")
+            ],
+            [
+                "question"              => "questions/question-fa16.jpg",
+                "fa_image_question_id"  => 2,
                 "key"               => md5("a")
             ],
             [
-                "question_fa_id"    => 1,
-                "image_id"          => 4,
-                "key"               => md5("c")
-            ],
-            [
-                "question_fa_id"    => 1,
-                "image_id"          => 5,
+                "question"              => "questions/question-fa17.jpg",
+                "fa_image_question_id"  => 2,
                 "key"               => md5("b")
             ],
             [
-                "question_fa_id"    => 1,
-                "image_id"          => 6,
-                "key"               => md5("a")
-            ],
-            [
-                "question_fa_id"    => 1,
-                "image_id"          => 7,
+                "question"              => "questions/question-fa18.jpg",
+                "fa_image_question_id"  => 2,
                 "key"               => md5("d")
             ],
             [
-                "question_fa_id"    => 1,
-                "image_id"          => 8,
-                "key"               => md5("b")
-            ],
-            [
-                "question_fa_id"    => 1,
-                "image_id"          => 9,
+                "question"              => "questions/question-fa19.jpg",
+                "fa_image_question_id"  => 2,
                 "key"               => md5("c")
             ],
             [
-                "question_fa_id"    => 1,
-                "image_id"          => 10,
-                "key"               => md5("e")
-            ],
-            [
-                "question_fa_id"    => 1,
-                "image_id"          => 11,
-                "key"               => md5("e")
-            ],
-            [
-                "question_fa_id"    => 1,
-                "image_id"          => 12,
-                "key"               => md5("d")
-            ],
-            [
-                "question_fa_id"    => 1,
-                "image_id"          => 13,
-                "key"               => md5("e")
-            ],
-            [
-                "question_fa_id"    => 1,
-                "image_id"          => 14,
-                "key"               => md5("b")
-            ],
-            [
-                "question_fa_id"    => 2,
-                "image_id"          => 15,
-                "key"               => md5("d")
-            ],
-            [
-                "question_fa_id"    => 2,
-                "image_id"          => 16,
-                "key"               => md5("c")
-            ],
-            [
-                "question_fa_id"    => 2,
-                "image_id"          => 17,
-                "key"               => md5("b")
-            ],
-            [
-                "question_fa_id"    => 2,
-                "image_id"          => 18,
-                "key"               => md5("a")
-            ],
-            [
-                "question_fa_id"    => 2,
-                "image_id"          => 19,
-                "key"               => md5("b")
-            ],
-            [
-                "question_fa_id"    => 2,
-                "image_id"          => 20,
-                "key"               => md5("d")
-            ],
-            [
-                "question_fa_id"    => 2,
-                "image_id"          => 21,
-                "key"               => md5("c")
-            ],
-            [
-                "question_fa_id"    => 2,
-                "image_id"          => 22,
+                "question"              => "questions/question-fa20.jpg",
+                "fa_image_question_id"  => 2,
                 "key"               => md5("a")
             ]
         ]);

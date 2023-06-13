@@ -9,6 +9,7 @@ class Ra extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_ra";
+    protected $table = "ra_questions";
+    protected $guarded = ["id"];
     protected $hidden = ["key"];
 }

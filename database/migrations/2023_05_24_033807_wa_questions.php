@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("questions_wu_image", function (Blueprint $table) {
-            $table->foreignId("question_wu_id")->constrained("questions_wu");
-            $table->foreignId("image_id")->constrained("images");
-            $table->char("key");
-            $table->primary(["question_wu_id", "image_id"]);
+        Schema::create("wa_questions", function (Blueprint $table) {
+            $table->id();
+            $table->string("option_a");
+            $table->string("option_b");
+            $table->string("option_c");
+            $table->string("option_d");
+            $table->string("option_e");
+            $table->string("key");
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("questions_wu_image");
+        Schema::dropIfExists("wa_questions");
     }
 };

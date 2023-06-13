@@ -9,6 +9,7 @@ class Wa extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_wa";
+    protected $table = "wa_questions";
     protected $hidden = ["key"];
+    protected $guarded = ["id"];
 }

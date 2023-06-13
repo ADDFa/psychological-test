@@ -14,7 +14,7 @@ class PAPI extends Seeder
      */
     public function run()
     {
-        DB::table("questions_papi")->insert([
+        DB::table("papi_questions")->insert([
             // 1
             [
                 "first_question"    => "SAYA ADALAH PEKERJA KERAS",

@@ -14,7 +14,7 @@ class An extends Seeder
      */
     public function run()
     {
-        DB::table("questions_an")->insert([
+        DB::table("an_questions")->insert([
             // 1
             [
                 "first_word"        => "Menemukan",

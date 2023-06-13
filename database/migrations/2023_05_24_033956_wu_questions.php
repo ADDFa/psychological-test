@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("questions_fa", function (Blueprint $table) {
+        Schema::create("wu_questions", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("question")->constrained("images");
+            $table->string("question"); // filename
+            $table->foreignId("question_wu_image_id")->constrained("wu_image_questions");
+            $table->string("key");
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("questions_fa");
+        Schema::dropIfExists("wu_questions");
     }
 };

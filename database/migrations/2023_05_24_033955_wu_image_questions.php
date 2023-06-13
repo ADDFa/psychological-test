@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("questions_msdt", function (Blueprint $table) {
+        Schema::create("wu_image_questions", function (Blueprint $table) {
             $table->id();
-            $table->text("first_statement");
-            $table->text("second_statement");
+            $table->string("question"); // filename
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("questions_msdt");
+        Schema::dropIfExists("wu_image_questions");
     }
 };

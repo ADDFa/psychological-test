@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Res\Api;
+use App\Http\Helper\Response;
 use App\Models\ExamTime;
 use App\Models\ParticipantTest;
 use Illuminate\Http\Request;
@@ -57,7 +57,9 @@ class ParticipantTestController extends Controller
             ]);
         }
 
-        return ParticipantTest::insert($participantTest) ? response()->json(["no_test" => $noTest]) : Api::message("Gagal mendaftarkan peserta test", 500);
+        return ParticipantTest::insert($participantTest) ?
+            response()->json(["no_test" => $noTest]) :
+            Response::message("Gagal mendaftarkan peserta test", 500);
     }
 
     /**

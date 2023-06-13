@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("participant_test", function (Blueprint $table) {
+        Schema::create("papi_questions", function (Blueprint $table) {
             $table->id();
-            $table->integer("no_test")->unsigned();
-            $table->foreignId("user_id")->constrained("users");
-            $table->bigInteger("end_exam_time")->unsigned();
-            $table->enum("exam", ["se", "wa", "an", "ge", "ra", "zr", "fa", "wu", "me", "msdt", "papi"]);
+            $table->text("first_question");
+            $table->enum("first_arrow", ["left", "right", "top-right", "bottom-left"]);
+            $table->text("second_question");
+            $table->enum("second_arrow", ["left", "right", "top-right", "bottom-left"]);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("participant_test");
+        Schema::dropIfExists("papi_questions");
     }
 };

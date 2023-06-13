@@ -15,177 +15,111 @@ class Wu extends Seeder
      */
     public function run()
     {
-        DB::table("images")->insert([
+        DB::table("wu_image_questions")->insert([
             [
-                "filename"  => "wu/question.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image1.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image2.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image3.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image4.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image5.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image6.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image7.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image8.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image9.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image10.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image11.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image12.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image13.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image14.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image15.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image16.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image17.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image18.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image19.jpg"
-            ],
-            [
-                "filename"  => "wu/question-image20.jpg"
+                "question"  => "questions/question-image-wu1.jpg"
             ]
         ]);
 
-        DB::table("questions_wu")->insert([
+        DB::table("wu_questions")->insert([
             [
-                "question"      => 23
-            ]
-        ]);
-
-        DB::table("questions_wu_image")->insert([
-            [
-                "question_wu_id"    => 1,
-                "image_id"          => 24,
-                "key"               => md5("a")
+                "question"              => "questions/question-wu1.jpg",
+                "question_wu_image_id"  => 1,
+                "key"                   => md5("a")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 25,
+                "question"              => "questions/question-wu2.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("c")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 26,
+                "question"              => "questions/question-wu3.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("d")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 27,
+                "question"              => "questions/question-wu4.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("e")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 28,
+                "question"              => "questions/question-wu5.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("a")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 29,
+                "question"              => "questions/question-wu6.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("c")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 30,
+                "question"              => "questions/question-wu7.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("d")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 31,
+                "question"              => "questions/question-wu8.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("c")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 32,
+                "question"              => "questions/question-wu9.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("e")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 33,
+                "question"              => "questions/question-wu10.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("a")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 34,
+                "question"              => "questions/question-wu11.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("b")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 35,
+                "question"              => "questions/question-wu12.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("d")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 36,
+                "question"              => "questions/question-wu13.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("e")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 37,
+                "question"              => "questions/question-wu14.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("b")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 38,
+                "question"              => "questions/question-wu15.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("d")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 39,
+                "question"              => "questions/question-wu16.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("b")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 40,
+                "question"              => "questions/question-wu17.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("a")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 41,
+                "question"              => "questions/question-wu18.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("e")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 42,
+                "question"              => "questions/question-wu19.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("b")
             ],
             [
-                "question_wu_id"    => 1,
-                "image_id"          => 43,
+                "question"              => "questions/question-wu20.jpg",
+                "question_wu_image_id"  => 1,
                 "key"               => md5("c")
             ]
         ]);

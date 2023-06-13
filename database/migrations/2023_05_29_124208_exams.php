@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create("exams", function (Blueprint $table) {
             $table->id();
             $table->enum("exam", ["ist", "msdt", "papi"]);
-            $table->boolean("active")->default(true);
+            $table->boolean("active")->default(false);
             $table->timestamps();
         });
     }

@@ -9,6 +9,11 @@ class FaImage extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_fa_image";
-    protected $hidden = ["key"];
+    protected $table = "fa_image_questions";
+    protected $guarded = ["id"];
+
+    public function questions()
+    {
+        return $this->hasMany(Fa::class);
+    }
 }

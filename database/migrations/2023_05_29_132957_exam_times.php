@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create("exam_times", function (Blueprint $table) {
             $table->id();
             $table->enum("exam", ["se", "wa", "an", "ge", "ra", "zr", "fa", "wu", "me", "msdt", "papi"]);
-            $table->integer("time")->unsigned();
+            $table->integer("time")->unsigned(); // minutes
             $table->timestamps();
         });
     }

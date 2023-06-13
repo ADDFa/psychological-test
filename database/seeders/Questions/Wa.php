@@ -14,7 +14,7 @@ class Wa extends Seeder
      */
     public function run()
     {
-        DB::table("questions_wa")->insert([
+        DB::table("wa_questions")->insert([
             // 1
             [
                 "option_a"      => "Lingakaran",

@@ -14,7 +14,7 @@ class Se extends Seeder
      */
     public function run()
     {
-        DB::table("questions_se")->insert([
+        DB::table("se_questions")->insert([
             // 1
             [
                 "question"      => "Pengaruh seseorang terhadap orang lain seharusnya bergantung pada ...",

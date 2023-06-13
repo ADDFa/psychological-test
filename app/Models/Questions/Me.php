@@ -9,6 +9,6 @@ class Me extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_me";
+    protected $table = "me_questions";
     protected $hidden = ["key"];
 }

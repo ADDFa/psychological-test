@@ -9,5 +9,6 @@ class Ge extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_ge";
+    protected $table = "ge_questions";
+    protected $guarded = ["id"];
 }

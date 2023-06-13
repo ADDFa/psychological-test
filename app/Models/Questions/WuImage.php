@@ -9,6 +9,11 @@ class WuImage extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_wu_image";
-    protected $hidden = ["key"];
+    protected $table = "wu_image_questions";
+    protected $guarded = ["id"];
+
+    public function questions()
+    {
+        return $this->hasMany(Wu::class);
+    }
 }

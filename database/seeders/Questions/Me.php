@@ -2,7 +2,6 @@
 
 namespace Database\Seeders\Questions;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -136,7 +135,7 @@ class Me extends Seeder
             ]
         ]);
 
-        DB::table("questions_me")->insert([
+        DB::table("me_questions")->insert([
             [
                 "question"      => "Kata yang mempunyai huruf permulaan - A - adalah suatu ...",
                 "key"           => md5("d")

@@ -15,7 +15,7 @@ class Zr extends Seeder
      */
     public function run()
     {
-        DB::table("questions_zr")->insert([
+        DB::table("zr_questions")->insert([
             [
                 "first_number"      => 6,
                 "second_number"     => 9,

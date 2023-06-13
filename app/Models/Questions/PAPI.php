@@ -9,5 +9,6 @@ class PAPI extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_papi";
+    protected $table = "papi_questions";
+    protected $guarded = ["id"];
 }

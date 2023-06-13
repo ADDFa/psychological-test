@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("images", function (Blueprint $table) {
+        Schema::create("fa_image_questions", function (Blueprint $table) {
             $table->id();
-            $table->string("filename");
+            $table->string("question"); // filename
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("images");
+        Schema::dropIfExists("fa_image_questions");
     }
 };

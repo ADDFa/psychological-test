@@ -9,6 +9,7 @@ class An extends Model
 {
     use HasFactory;
 
-    protected $table = "questions_an";
+    protected $table = "an_questions";
     protected $hidden = ["key"];
+    protected $guarded = ["id"];
 }

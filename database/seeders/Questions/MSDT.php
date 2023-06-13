@@ -15,7 +15,7 @@ class MSDT extends Seeder
      */
     public function run()
     {
-        DB::table("questions_msdt")->insert([
+        DB::table("msdt_questions")->insert([
             [
                 "first_statement"   => "Saya tidak akan menegur pelanggar-pelanggar peraturan bila saya merasa pasti bahwa tida ada satu orangpun yang mengetahui tentang pelanggar-pelanggar tersebut.",
                 "second_statement"  => "Bila saya mengumumkan suatu keputusan yang kurang menyenangkan, saya akan menjelaskan kepada bawahan saya bahwa keputusan ini dibuat oleh direktur."

@@ -15,7 +15,7 @@ class Ra extends Seeder
      */
     public function run()
     {
-        DB::table("questions_ra")->insert([
+        DB::table("ra_questions")->insert([
             [
                 "question"  => "Jika seorang anak memiliki 50 rupiah dan memberikan 15 rupiah kepada orang lain, berapa rupiahkah yang masih tinggal padanya?",
                 "key"           => md5(35)
