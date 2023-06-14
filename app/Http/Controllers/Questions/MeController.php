@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Response;
 use App\Models\MeWord;
 use App\Models\Questions\Me;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class MeController extends Controller
      */
     public function index()
     {
-        return response()->json(Me::all());
+        return Response::success(Me::all());
     }
 
     /**

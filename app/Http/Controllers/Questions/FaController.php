@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Response;
 use App\Models\Questions\Fa;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class FaController extends Controller
      */
     public function index()
     {
-        return response()->json(Fa::with("images")->get());
+        return Response::success(Fa::all());
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Response;
 use App\Models\Questions\Wa;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class WaController extends Controller
      */
     public function index()
     {
-        return response()->json(Wa::all());
+        return Response::success(Wa::all());
     }
 
     /**

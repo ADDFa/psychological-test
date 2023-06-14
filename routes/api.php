@@ -1,11 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ExamController;
-use App\Http\Controllers\ParticipantTestController;
-use App\Http\Controllers\Questions\MeController;
-use App\Http\Middleware\AuthMiddleware;
-use App\Http\Middleware\ExamMiddleware;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,20 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(AuthMiddleware::class)->group(function () {
-    Route::controller(ExamController::class)->middleware(ExamMiddleware::class)->group(function () {
-        Route::get("/question", "index");
-    });
-
-    Route::controller(ParticipantTestController::class)->group(function () {
-        Route::get("/no-test", "store");
-    });
-
-    Route::get("question-me/words", [MeController::class, "words"]);
-});
-
 Route::controller(AuthController::class)->group(function () {
     Route::post("/register", "register");
     Route::post("/refresh-token", "refreshToken");
     Route::post("/login", "login");
+});
+
+Route::controller(QuestionController::class)->group(function () {
+    Route::get("/questions/{category}", "getQuestionByCategory");
 });

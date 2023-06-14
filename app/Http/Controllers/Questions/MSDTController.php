@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Response;
 use App\Models\Questions\MSDT;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class MSDTController extends Controller
      */
     public function index()
     {
-        return response()->json(MSDT::all());
+        return Response::success(MSDT::all());
     }
 
     /**
