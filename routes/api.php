@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(AuthMiddleware::class)->group(function () {
     Route::controller(ExamController::class)->middleware(ExamMiddleware::class)->group(function () {
         Route::get("/question", "index");
-        Route::get("/question/image", "show");
     });
 
     Route::controller(ParticipantTestController::class)->group(function () {
@@ -34,5 +33,6 @@ Route::middleware(AuthMiddleware::class)->group(function () {
 
 Route::controller(AuthController::class)->group(function () {
     Route::post("/register", "register");
+    Route::post("/refresh-token", "refreshToken");
     Route::post("/login", "login");
 });

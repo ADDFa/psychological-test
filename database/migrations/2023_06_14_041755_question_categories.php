@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("exam_times", function (Blueprint $table) {
+        Schema::create("question_categories", function (Blueprint $table) {
             $table->id();
-            $table->enum("exam", ["se", "wa", "an", "ge", "ra", "zr", "fa", "wu", "me", "msdt", "papi"]);
-            $table->integer("time")->unsigned(); // minutes
+            $table->string("category")->unique();
+            $table->integer("time")->unsigned(); // seconds
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("exam_times");
+        Schema::dropIfExists("question_categories");
     }
 };

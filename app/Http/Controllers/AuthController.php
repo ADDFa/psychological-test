@@ -7,6 +7,7 @@ use App\Models\User;
 use Firebase\JWT\JWT;
 use App\Models\Credential;
 use App\Http\Helper\Response;
+use App\Models\TestParticipant;
 use Firebase\JWT\Key;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -45,7 +46,7 @@ class AuthController extends Controller
         ]);
         if ($validator->fails()) return Response::errors($validator);
 
-        $credential = Credential::where("username", $request->username)->first();
+        $credential = Credential::find($request->username);
         if (!$credential || !password_verify($request->password, $credential->password)) {
             return Response::message("Username atau Password salah!", 400);
         }
@@ -54,7 +55,7 @@ class AuthController extends Controller
         return self::tokens($user);
     }
 
-    public function refresh(Request $request)
+    public function refreshToken(Request $request)
     {
         $validator = Validator::make($request->all(), [
             "token"  => "required|string"
@@ -80,29 +81,37 @@ class AuthController extends Controller
             "birthplace"        => "required|string",
             "date_of_birth"     => "required|date_format:Y-m-d",
             "general_education" => "required|string",
-            "special_education" => "required|string",
+            "special_education" => "string",
             "username"          => "required|unique:credentials,username|string",
             "password"          => "required|string|min:8"
         ]);
         if ($validator->fails()) return Response::errors($validator);
 
-        DB::transaction(function () use ($request) {
-            $user = new User;
-            $user->name = $request->name;
-            $user->gender = $request->gender;
-            $user->birthplace = $request->birthplace;
-            $user->date_of_birth = $request->date_of_birth;
-            $user->general_education = $request->general_education;
-            $user->special_education = $request->special_education;
-            $user->save();
+        try {
+            DB::transaction(function () use ($request) {
+                $user = new User;
+                $user->name = $request->name;
+                $user->save();
 
-            $credential = new Credential;
-            $credential->user_id = $user->id;
-            $credential->username = $request->username;
-            $credential->password = password_hash($request->password, PASSWORD_DEFAULT);
-            $credential->save();
-        });
+                $credential = new Credential;
+                $credential->user_id = $user->id;
+                $credential->username = $request->username;
+                $credential->password = password_hash($request->password, PASSWORD_DEFAULT);
+                $credential->save();
 
-        return Response::message("Registrasi Berhasil", 200);
+                $testParticipant = new TestParticipant;
+                $testParticipant->user_id = $user->id;
+                $testParticipant->gender = $request->gender;
+                $testParticipant->birthplace = $request->birthplace;
+                $testParticipant->date_of_birth = $request->date_of_birth;
+                $testParticipant->general_education = $request->general_education;
+                $testParticipant->special_education = $request->special_education;
+                $testParticipant->save();
+            });
+
+            return Response::message("Registrasi Berhasil", 200);
+        } catch (Exception $e) {
+            return Response::message("Transaksi Gagal: " . $e->getMessage());
+        }
     }
 }

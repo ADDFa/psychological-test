@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("credentials", function (Blueprint $table) {
+        Schema::create("test_participants", function (Blueprint $table) {
+            $table->id();
             $table->foreignId("user_id")->constrained("users");
-            $table->string("username")->unique()->primary();
-            $table->string("password");
-            $table->enum("role", ["admin", "user"])->default("user");
+            $table->enum("gender", ["P", "L"]);
+            $table->string("birthplace");
+            $table->date("date_of_birth");
+            $table->string("general_education");
+            $table->string("special_education")->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("credentials");
+        Schema::dropIfExists("test_participants");
     }
 };

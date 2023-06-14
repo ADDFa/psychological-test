@@ -16,11 +16,6 @@ return new class extends Migration
         Schema::create("users", function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->enum("gender", ["P", "L"]);
-            $table->string("birthplace");
-            $table->date("date_of_birth");
-            $table->string("general_education");
-            $table->string("special_education");
             $table->timestamps();
         });
     }

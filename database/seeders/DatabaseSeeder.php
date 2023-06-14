@@ -38,7 +38,10 @@ class DatabaseSeeder extends Seeder
             PAPI::class,
             MSDT::class,
             Exams::class,
-            ExamTimes::class
+            QuestionCategories::class,
+
+            // TODO: Users
+            Users::class
         ]);
     }
 }
