@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create("question_categories", function (Blueprint $table) {
             $table->id();
-            $table->string("category")->unique();
+            $table->enum("category", ["se", "wa", "an", "ge", "ra", "zr", "fa", "wu", "me", "msdt", "papi"])->unique();
             $table->integer("time")->unsigned(); // seconds
             $table->timestamps();
         });

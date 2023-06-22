@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Questions;
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Response;
 use App\Models\MeWord;
+use App\Models\QuestionCategory;
 use App\Models\Questions\Me;
 use Illuminate\Http\Request;
 
@@ -17,18 +18,12 @@ class MeController extends Controller
      */
     public function index()
     {
-        return Response::success(Me::all());
-    }
+        $result = [
+            "questions" => Me::all(),
+            "category"  => QuestionCategory::where("category", "me")->first()
+        ];
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return Response::success($result);
     }
 
     /**

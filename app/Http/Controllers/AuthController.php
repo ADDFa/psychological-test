@@ -7,7 +7,6 @@ use App\Models\User;
 use Firebase\JWT\JWT;
 use App\Models\Credential;
 use App\Http\Helper\Response;
-use App\Models\TestParticipant;
 use Firebase\JWT\Key;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -16,15 +15,17 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    private static function tokens($user)
+    private static function tokens($user, $role)
     {
         $time = time();
         $accessPayload = [
             "user"  => $user,
+            "role"  => $role,
             "exp"   => $time + 3600
         ];
         $refreshPayload = [
             "user"  => $user,
+            "role"  => $role,
             "exp"   => $time + 604800
         ];
 
@@ -52,7 +53,7 @@ class AuthController extends Controller
         }
 
         $user = User::find($credential->user_id);
-        return self::tokens($user);
+        return self::tokens($user, $credential->role);
     }
 
     public function refreshToken(Request $request)
@@ -64,7 +65,7 @@ class AuthController extends Controller
 
         try {
             $payload = JWT::decode($request->token, new Key(env("JWT_REFRESH"), "HS256"));
-            return self::tokens($payload->user);
+            return self::tokens($payload->user, $payload->role);
         } catch (Exception $e) {
             return Response::message($e->getMessage());
         }
@@ -91,6 +92,11 @@ class AuthController extends Controller
             DB::transaction(function () use ($request) {
                 $user = new User;
                 $user->name = $request->name;
+                $user->gender = $request->gender;
+                $user->birthplace = $request->birthplace;
+                $user->date_of_birth = $request->date_of_birth;
+                $user->general_education = $request->general_education;
+                $user->special_education = $request->special_education;
                 $user->save();
 
                 $credential = new Credential;
@@ -98,15 +104,6 @@ class AuthController extends Controller
                 $credential->username = $request->username;
                 $credential->password = password_hash($request->password, PASSWORD_DEFAULT);
                 $credential->save();
-
-                $testParticipant = new TestParticipant;
-                $testParticipant->user_id = $user->id;
-                $testParticipant->gender = $request->gender;
-                $testParticipant->birthplace = $request->birthplace;
-                $testParticipant->date_of_birth = $request->date_of_birth;
-                $testParticipant->general_education = $request->general_education;
-                $testParticipant->special_education = $request->special_education;
-                $testParticipant->save();
             });
 
             return Response::message("Registrasi Berhasil", 200);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Response;
+use App\Models\QuestionCategory;
 use App\Models\Questions\Ra;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,12 @@ class RaController extends Controller
      */
     public function index()
     {
-        return Response::success(Ra::all());
+        $result = [
+            "questions" => Ra::all(),
+            "category"  => QuestionCategory::where("category", "ra")->first()
+        ];
+
+        return Response::success($result);
     }
 
     /**

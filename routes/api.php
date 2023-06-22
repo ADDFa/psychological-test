@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\QuestionCategoryController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\Questions\MeController;
+use App\Http\Controllers\TestController;
+use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +21,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(AuthController::class)->group(function () {
+    Route::post("/login", "login");
     Route::post("/register", "register");
     Route::post("/refresh-token", "refreshToken");
-    Route::post("/login", "login");
 });
 
-Route::controller(QuestionController::class)->group(function () {
-    Route::get("/questions/{category}", "getQuestionByCategory");
+Route::middleware(AuthMiddleware::class)->group(function () {
+    Route::controller(ExamController::class)->group(function () {
+        Route::get("/exam", "index");
+        Route::get("/exam/{exam}", "show");
+    });
+
+    Route::controller(QuestionCategoryController::class)->group(function () {
+        Route::get("/question-category/{category}", "show");
+    });
+
+    Route::controller(QuestionController::class)->group(function () {
+        Route::get("/questions/{category}", "getQuestionByCategory");
+    });
+
+    Route::controller(MeController::class)->group(function () {
+        Route::get("/me-words", "words");
+    });
+
+    Route::controller(TestController::class)->group(function () {
+        Route::post("/test", "store");
+    });
 });

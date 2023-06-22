@@ -1,38 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Questions;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Helper\Response;
-use App\Models\QuestionCategory;
-use App\Models\Questions\Zr;
+use App\Models\Exam;
 use Illuminate\Http\Request;
 
-class ZrController extends Controller
+class ExamController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $result = [
-            "questions" => Zr::all(),
-            "category"  => QuestionCategory::where("category", "zr")->first()
-        ];
-
-        return Response::success($result);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Response::success(Exam::all());
     }
 
     /**
@@ -52,9 +35,9 @@ class ZrController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Exam $exam)
     {
-        //
+        return Response::success($exam);
     }
 
     /**

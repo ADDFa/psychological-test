@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Response;
+use App\Models\QuestionCategory;
 use App\Models\Questions\An;
 use Illuminate\Http\Request;
 
@@ -16,17 +17,12 @@ class AnController extends Controller
      */
     public function index()
     {
-        return Response::success(An::all());
-    }
+        $result = [
+            "questions" => An::all(),
+            "category"  => QuestionCategory::where("category", "an")->first()
+        ];
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Response::success($result);
     }
 
     /**

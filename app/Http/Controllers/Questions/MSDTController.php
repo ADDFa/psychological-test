@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Response;
+use App\Models\QuestionCategory;
 use App\Models\Questions\MSDT;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,12 @@ class MSDTController extends Controller
      */
     public function index()
     {
-        return Response::success(MSDT::all());
+        $result = [
+            "questions" => MSDT::all(),
+            "category"  => QuestionCategory::where("category", "msdt")->first()
+        ];
+
+        return Response::success($result);
     }
 
     /**

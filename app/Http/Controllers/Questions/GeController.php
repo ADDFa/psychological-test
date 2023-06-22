@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Response;
+use App\Models\QuestionCategory;
 use App\Models\Questions\Ge;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,12 @@ class GeController extends Controller
      */
     public function index()
     {
-        return Response::success(Ge::all());
+        $result = [
+            "questions" => Ge::all(),
+            "category"  => QuestionCategory::where("category", "ge")->first()
+        ];
+
+        return Response::success($result);
     }
 
     /**

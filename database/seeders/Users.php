@@ -15,8 +15,20 @@ class Users extends Seeder
     public function run()
     {
         DB::table("users")->insert([
-            ["name"  => "Admin"],
-            ["name"  => "Adha"]
+            [
+                "name"  => "Admin",
+                "gender"               => "L",
+                "birthplace"            => "Sarolangun",
+                "date_of_birth"         => "2001-03-18",
+                "general_education"     => "S1"
+            ],
+            [
+                "name"  => "Adha",
+                "gender"               => "L",
+                "birthplace"            => "Sarolangun",
+                "date_of_birth"         => "2001-03-18",
+                "general_education"     => "S1"
+            ]
         ]);
 
         DB::table("credentials")->insert([
@@ -32,14 +44,6 @@ class Users extends Seeder
                 "password"  => password_hash("password", PASSWORD_DEFAULT),
                 "role"      => "user"
             ]
-        ]);
-
-        DB::table("test_participants")->insert([
-            "user_id"               => 2,
-            "gender"               => "L",
-            "birthplace"            => "Sarolangun",
-            "date_of_birth"         => "2001-03-18",
-            "general_education"     => "S1"
         ]);
     }
 }
