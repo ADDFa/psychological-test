@@ -69,4 +69,9 @@ class PAPIController extends Controller
     {
         //
     }
+
+    public function answer(PAPI $question)
+    {
+        // 
+    }
 }

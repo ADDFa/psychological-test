@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Questions;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
+use App\Models\Answers\Ge as AnswersGe;
 use App\Models\QuestionCategory;
+use App\Models\QuestionGe\Key;
 use App\Models\Questions\Ge;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class GeController extends Controller
+class GeController extends QuestionController
 {
     /**
      * Display a listing of the resource.
@@ -23,16 +26,6 @@ class GeController extends Controller
         ];
 
         return Response::success($result);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -58,17 +51,6 @@ class GeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -89,5 +71,24 @@ class GeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function answer(Request $request, $category, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            "id"        => "required|exists:ge_questions,id",
+            "answer"    => "required|string"
+        ]);
+        if ($validator->fails()) return Response::errors($validator);
+
+        $key = Key::where("key", $request->answer)->first();
+        $point = "0";
+        if ($key) $point = $key->point;
+
+        $answer = AnswersGe::updateOrCreate(
+            ["ge_question_id" => $id, "user_id" => $request->user->id],
+            ["answer" => $request->answer, "point" => $point]
+        );
+        return $answer;
     }
 }

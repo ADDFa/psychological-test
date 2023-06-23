@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Questions;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
+use App\Models\Answers\Zr as AnswersZr;
 use App\Models\QuestionCategory;
 use App\Models\Questions\Zr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class ZrController extends Controller
+class ZrController extends QuestionController
 {
     /**
      * Display a listing of the resource.
@@ -23,16 +25,6 @@ class ZrController extends Controller
         ];
 
         return Response::success($result);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -58,17 +50,6 @@ class ZrController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -89,5 +70,33 @@ class ZrController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function answer(Request $request, $category, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            "id"        => "required|exists:zr_questions,id",
+            "answer"    => "required|integer"
+        ]);
+        if ($validator->fails()) return Response::errors($validator);
+
+        $question = Zr::find($id);
+        $decoded = base64_decode($question->key);
+        $decodes = str_split($decoded);
+        $answers = str_split($request->answer);
+
+        $correct = true;
+        foreach ($answers as $answer) {
+            if (array_search($answer, $decodes) === false) {
+                $correct = false;
+                break;
+            }
+        }
+
+        $answer = AnswersZr::updateOrCreate(
+            ["zr_question_id" => $id, "user_id" => $request->user->id],
+            ["answer" => $request->answer, "correct" => $correct]
+        );
+        return $answer;
     }
 }

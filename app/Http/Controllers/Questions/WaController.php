@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Questions;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
+use App\Models\Answers\Wa as AnswersWa;
 use App\Models\QuestionCategory;
 use App\Models\Questions\Wa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class WaController extends Controller
+class WaController extends QuestionController
 {
     /**
      * Display a listing of the resource.
@@ -23,16 +25,6 @@ class WaController extends Controller
         ];
 
         return Response::success($result);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -58,17 +50,6 @@ class WaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -89,5 +70,23 @@ class WaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function answer(Request $request, $category, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            "id"        => "required|exists:wa_questions,id",
+            "answer"    => $this->optionRule()
+        ]);
+        if ($validator->fails()) return Response::errors($validator);
+
+        $question = Wa::find($id);
+        $correct = md5($request->answer) === $question->key;
+
+        $answer = AnswersWa::updateOrCreate(
+            ["wa_question_id" => $id, "user_id" => $request->user->id],
+            ["answer" => $request->answer, "correct" => $correct]
+        );
+        return $answer;
     }
 }

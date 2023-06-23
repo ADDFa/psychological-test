@@ -24,7 +24,7 @@ class Zr extends Seeder
                 "fifth_number"      => 18,
                 "sixth_number"      => 21,
                 "seventh_number"    => 24,
-                "key"               => md5(27)
+                "key"               => base64_encode(27)
             ],
 
             [
@@ -35,7 +35,7 @@ class Zr extends Seeder
                 "fifth_number"      => 21,
                 "sixth_number"      => 22,
                 "seventh_number"    => 24,
-                "key"               => md5(25)
+                "key"               => base64_encode(25)
             ],
 
             [
@@ -46,7 +46,7 @@ class Zr extends Seeder
                 "fifth_number"      => 25,
                 "sixth_number"      => 24,
                 "seventh_number"    => 28,
-                "key"               => md5(27)
+                "key"               => base64_encode(27)
             ],
 
             [
@@ -57,7 +57,7 @@ class Zr extends Seeder
                 "fifth_number"      => 18,
                 "sixth_number"      => 14,
                 "seventh_number"    => 29,
-                "key"               => md5(15)
+                "key"               => base64_encode(15)
             ],
 
             [
@@ -68,7 +68,7 @@ class Zr extends Seeder
                 "fifth_number"      => 20,
                 "sixth_number"      => 22,
                 "seventh_number"    => 44,
-                "key"               => md5(46)
+                "key"               => base64_encode(46)
             ],
 
             [
@@ -79,7 +79,7 @@ class Zr extends Seeder
                 "fifth_number"      => 17,
                 "sixth_number"      => 11,
                 "seventh_number"    => 18,
-                "key"               => md5(10)
+                "key"               => base64_encode(10)
             ],
 
             [
@@ -90,7 +90,7 @@ class Zr extends Seeder
                 "fifth_number"      => 30,
                 "sixth_number"      => 15,
                 "seventh_number"    => 45,
-                "key"               => md5(42)
+                "key"               => base64_encode(42)
             ],
 
             [
@@ -101,7 +101,7 @@ class Zr extends Seeder
                 "fifth_number"      => 9,
                 "sixth_number"      => 11,
                 "seventh_number"    => 14,
-                "key"               => md5(7)
+                "key"               => base64_encode(7)
             ],
 
             [
@@ -112,7 +112,7 @@ class Zr extends Seeder
                 "fifth_number"      => 4,
                 "sixth_number"      => 2,
                 "seventh_number"    => 4,
-                "key"               => md5(5)
+                "key"               => base64_encode(5)
             ],
 
             [
@@ -123,7 +123,7 @@ class Zr extends Seeder
                 "fifth_number"      => 21,
                 "sixth_number"      => 15,
                 "seventh_number"    => 22,
-                "key"               => md5(14)
+                "key"               => base64_encode(14)
             ],
 
             [
@@ -134,7 +134,7 @@ class Zr extends Seeder
                 "fifth_number"      => 22,
                 "sixth_number"      => 20,
                 "seventh_number"    => 10,
-                "key"               => md5(8)
+                "key"               => base64_encode(8)
             ],
 
             [
@@ -145,7 +145,7 @@ class Zr extends Seeder
                 "fifth_number"      => 11,
                 "sixth_number"      => 12,
                 "seventh_number"    => 11,
-                "key"               => md5(14)
+                "key"               => base64_encode(14)
             ],
 
             [
@@ -156,7 +156,7 @@ class Zr extends Seeder
                 "fifth_number"      => 28,
                 "sixth_number"      => 33,
                 "seventh_number"    => 39,
-                "key"               => md5(45)
+                "key"               => base64_encode(45)
             ],
 
             [
@@ -167,7 +167,7 @@ class Zr extends Seeder
                 "fifth_number"      => 21,
                 "sixth_number"      => 17,
                 "seventh_number"    => 68,
-                "key"               => md5(63)
+                "key"               => base64_encode(63)
             ],
 
             [
@@ -178,7 +178,7 @@ class Zr extends Seeder
                 "fifth_number"      => 13,
                 "sixth_number"      => 16,
                 "seventh_number"    => 8,
-                "key"               => md5(12)
+                "key"               => base64_encode(12)
             ],
 
             [
@@ -189,7 +189,7 @@ class Zr extends Seeder
                 "fifth_number"      => 35,
                 "sixth_number"      => 48,
                 "seventh_number"    => 63,
-                "key"               => md5(80)
+                "key"               => base64_encode(80)
             ],
 
             [
@@ -200,7 +200,7 @@ class Zr extends Seeder
                 "fifth_number"      => 8,
                 "sixth_number"      => 13,
                 "seventh_number"    => 7,
-                "key"               => md5(14)
+                "key"               => base64_encode(14)
             ],
 
             [
@@ -211,7 +211,7 @@ class Zr extends Seeder
                 "fifth_number"      => 6,
                 "sixth_number"      => 3,
                 "seventh_number"    => 9,
-                "key"               => md5(12)
+                "key"               => base64_encode(12)
             ],
 
             [
@@ -222,7 +222,7 @@ class Zr extends Seeder
                 "fifth_number"      => 30,
                 "sixth_number"      => 23,
                 "seventh_number"    => 69,
-                "key"               => md5(63)
+                "key"               => base64_encode(63)
             ],
 
             [
@@ -233,7 +233,7 @@ class Zr extends Seeder
                 "fifth_number"      => 11,
                 "sixth_number"      => 77,
                 "seventh_number"    => 70,
-                "key"               => md5(10)
+                "key"               => base64_encode(10)
             ]
         ]);
     }

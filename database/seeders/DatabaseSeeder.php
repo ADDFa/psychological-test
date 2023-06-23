@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\QuestionGe\Conversions;
+use Database\Seeders\QuestionGe\Keys;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Questions\An;
 use Database\Seeders\Questions\Fa;
@@ -41,7 +43,11 @@ class DatabaseSeeder extends Seeder
             QuestionCategories::class,
 
             // TODO: Users
-            Users::class
+            Users::class,
+
+            // TODO: Question Ge
+            Keys::class,
+            Conversions::class
         ]);
     }
 }

@@ -37,7 +37,8 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     });
 
     Route::controller(QuestionController::class)->group(function () {
-        Route::get("/questions/{category}", "getQuestionByCategory");
+        Route::get("/question/{category}", "getQuestionByCategory");
+        Route::post("/question/{category}/{id}", "answer");
     });
 
     Route::controller(MeController::class)->group(function () {

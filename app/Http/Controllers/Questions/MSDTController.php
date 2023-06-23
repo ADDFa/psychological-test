@@ -69,4 +69,9 @@ class MSDTController extends Controller
     {
         //
     }
+
+    public function answer(MSDT $question)
+    {
+        // 
+    }
 }

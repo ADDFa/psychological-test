@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Questions;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
+use App\Models\Answers\An as AnswersAn;
 use App\Models\QuestionCategory;
 use App\Models\Questions\An;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class AnController extends Controller
+class AnController extends QuestionController
 {
     /**
      * Display a listing of the resource.
@@ -26,34 +28,12 @@ class AnController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
@@ -79,5 +59,23 @@ class AnController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function answer(Request $request, $category, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            "id"        => "required|exists:an_questions,id",
+            "answer"    => $this->optionRule()
+        ]);
+        if ($validator->fails()) return Response::errors($validator);
+
+        $question = An::find($id);
+        $correct = md5($request->answer) === $question->key;
+
+        $answer = AnswersAn::updateOrCreate(
+            ["an_question_id" => $id, "user_id" => $request->user->id],
+            ["answer" => $request->answer, "correct" => $correct]
+        );
+        return $answer;
     }
 }
