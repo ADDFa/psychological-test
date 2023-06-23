@@ -42,6 +42,8 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     });
 
     Route::controller(AnswerController::class)->group(function () {
+        Route::get("/answer/{category}", "index");
+        Route::get("/answer/{category}/{question_id}", "show");
         Route::post("/answer", "store");
     });
 
