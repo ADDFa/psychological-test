@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
-use App\Models\Answers\An as AnswersAn;
 use App\Models\QuestionCategory;
 use App\Models\Questions\An;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class AnController extends QuestionController
 {
@@ -59,23 +57,5 @@ class AnController extends QuestionController
     public function destroy($id)
     {
         //
-    }
-
-    public function answer(Request $request, $category, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            "id"        => "required|exists:an_questions,id",
-            "answer"    => $this->optionRule()
-        ]);
-        if ($validator->fails()) return Response::errors($validator);
-
-        $question = An::find($id);
-        $correct = md5($request->answer) === $question->key;
-
-        $answer = AnswersAn::updateOrCreate(
-            ["an_question_id" => $id, "user_id" => $request->user->id],
-            ["answer" => $request->answer, "correct" => $correct]
-        );
-        return $answer;
     }
 }

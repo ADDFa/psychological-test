@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
-use App\Models\Answers\Wu as AnswersWu;
 use App\Models\QuestionCategory;
 use App\Models\Questions\Wu;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class WuController extends QuestionController
 {
@@ -70,23 +68,5 @@ class WuController extends QuestionController
     public function destroy($id)
     {
         //
-    }
-
-    public function answer(Request $request, $category, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            "id"        => "required|exists:wu_questions,id",
-            "answer"    => $this->optionRule()
-        ]);
-        if ($validator->fails()) return Response::errors($validator);
-
-        $question = Wu::find($id);
-        $correct = md5($request->answer) === $question->key;
-
-        $answer = AnswersWu::updateOrCreate(
-            ["wu_question_id" => $id, "user_id" => $request->user->id],
-            ["answer" => $request->answer, "correct" => $correct]
-        );
-        return $answer;
     }
 }

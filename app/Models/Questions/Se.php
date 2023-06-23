@@ -2,6 +2,7 @@
 
 namespace App\Models\Questions;
 
+use App\Models\Answers\Se as AnswersSe;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

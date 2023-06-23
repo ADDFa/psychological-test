@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Questions;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
-use App\Models\QuestionCategory;
-use App\Models\Questions\Zr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class ZrController extends QuestionController
+class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +15,7 @@ class ZrController extends QuestionController
      */
     public function index()
     {
-        $result = [
-            "questions" => Zr::all(),
-            "category"  => QuestionCategory::where("category", "zr")->first()
-        ];
-
-        return Response::success($result);
+        //
     }
 
     /**
@@ -33,7 +26,15 @@ class ZrController extends QuestionController
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            "category"      => "required|exists:question_categories,category"
+        ]);
+        if ($validator->fails()) return Response::errors($validator);
+
+        $controller = ucwords($request->category) . "Controller";
+        return app()->call("\App\Http\Controllers\Answers\\{$controller}@store", [
+            "category" => $request->category
+        ]);
     }
 
     /**
@@ -43,6 +44,17 @@ class ZrController extends QuestionController
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         //
     }

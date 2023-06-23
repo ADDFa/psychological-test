@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\QuestionCategoryController;
@@ -38,7 +39,10 @@ Route::middleware(AuthMiddleware::class)->group(function () {
 
     Route::controller(QuestionController::class)->group(function () {
         Route::get("/question/{category}", "getQuestionByCategory");
-        Route::post("/question/{category}/{id}", "answer");
+    });
+
+    Route::controller(AnswerController::class)->group(function () {
+        Route::post("/answer", "store");
     });
 
     Route::controller(MeController::class)->group(function () {

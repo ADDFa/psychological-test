@@ -71,22 +71,4 @@ class FaController extends QuestionController
     {
         //
     }
-
-    public function answer(Request $request, $category, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            "id"        => "required|exists:fa_questions,id",
-            "answer"    => $this->optionRule()
-        ]);
-        if ($validator->fails()) return Response::errors($validator);
-
-        $question = Fa::find($id);
-        $correct = md5($request->answer) === $question->key;
-
-        $answer = AnswersFa::updateOrCreate(
-            ["fa_question_id" => $id, "user_id" => $request->user->id],
-            ["answer" => $request->answer, "correct" => $correct]
-        );
-        return $answer;
-    }
 }
