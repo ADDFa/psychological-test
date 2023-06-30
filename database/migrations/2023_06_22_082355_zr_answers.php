@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("zr_question_id")->constrained("zr_questions");
             $table->foreignId("user_id")->constrained("users");
-            $table->integer("answer");
+            $table->integer("answer")->nullable();
             $table->boolean("correct")->default(false);
             $table->timestamps();
         });

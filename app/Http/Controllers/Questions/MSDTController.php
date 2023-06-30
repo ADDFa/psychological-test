@@ -17,12 +17,7 @@ class MSDTController extends Controller
      */
     public function index()
     {
-        $result = [
-            "questions" => MSDT::all(),
-            "category"  => QuestionCategory::where("category", "msdt")->first()
-        ];
-
-        return Response::success($result);
+        return Response::success(MSDT::all());
     }
 
     /**

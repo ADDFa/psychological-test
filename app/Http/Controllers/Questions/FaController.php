@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
-use App\Models\Answers\Fa as AnswersFa;
-use App\Models\QuestionCategory;
 use App\Models\Questions\Fa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class FaController extends QuestionController
 {
@@ -19,12 +16,7 @@ class FaController extends QuestionController
      */
     public function index()
     {
-        $result = [
-            "questions" => Fa::all(),
-            "category"  => QuestionCategory::where("category", "fa")->first()
-        ];
-
-        return Response::success($result);
+        return Response::success(Fa::all());
     }
 
     /**

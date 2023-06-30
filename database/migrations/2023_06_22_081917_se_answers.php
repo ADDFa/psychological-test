@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("se_question_id")->constrained("se_questions");
             $table->foreignId("user_id")->constrained("users");
-            $table->enum("answer", ["a", "b", "c", "d", "e"]);
+            $table->enum("answer", ["a", "b", "c", "d", "e"])->nullable();
             $table->boolean("correct")->default(false);
             $table->timestamps();
         });

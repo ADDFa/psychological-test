@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helper\Response;
-use Illuminate\Support\Facades\Validator;
+use App\Models\QuestionCategory;
+use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
 {
-    public function getQuestionByCategory($category)
+    public function getQuestionByCategory(QuestionCategory $category)
     {
-        $validator = Validator::make(["category" => $category], [
-            "category" => "exists:question_categories,category"
-        ]);
-        if ($validator->fails()) return Response::errors($validator);
-
         $controller = ucwords($category) . "Controller";
         return app()->call("\App\Http\Controllers\Questions\\{$controller}@index");
+    }
+
+    public function getQuestionImage($fileName)
+    {
+        $exists = Storage::exists("questions/$fileName");
+        if ($exists) {
+            return response(Storage::get("questions/$fileName"), 200, [
+                "Content-Type" => "image/*"
+            ]);
+        }
+
+        return Response::message("File Not Found!", 404);
     }
 }

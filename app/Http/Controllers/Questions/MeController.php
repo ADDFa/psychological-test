@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Questions;
 use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
 use App\Models\MeWord;
-use App\Models\QuestionCategory;
 use App\Models\Questions\Me;
 use Illuminate\Http\Request;
 
@@ -18,12 +17,7 @@ class MeController extends QuestionController
      */
     public function index()
     {
-        $result = [
-            "questions" => Me::all(),
-            "category"  => QuestionCategory::where("category", "me")->first()
-        ];
-
-        return Response::success($result);
+        return Response::success(Me::all());
     }
 
     /**

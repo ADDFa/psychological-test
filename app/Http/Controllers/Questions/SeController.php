@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
-use App\Models\QuestionCategory;
 use App\Models\Questions\Se;
 use Illuminate\Http\Request;
 
@@ -17,12 +16,7 @@ class SeController extends QuestionController
      */
     public function index()
     {
-        $result = [
-            "questions" => Se::all(),
-            "category"  => QuestionCategory::where("category", "se")->first()
-        ];
-
-        return Response::success($result);
+        return Response::success(Se::all());
     }
 
     /**

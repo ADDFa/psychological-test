@@ -31,6 +31,7 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     Route::controller(ExamController::class)->group(function () {
         Route::get("/exam", "index");
         Route::get("/exam/{exam}", "show");
+        Route::post("/exam/{category}/do-the-exam", "doTheExam");
     });
 
     Route::controller(QuestionCategoryController::class)->group(function () {
@@ -39,6 +40,7 @@ Route::middleware(AuthMiddleware::class)->group(function () {
 
     Route::controller(QuestionController::class)->group(function () {
         Route::get("/question/{category}", "getQuestionByCategory");
+        Route::get("/question/image/{fileName}", "getQuestionImage");
     });
 
     Route::controller(AnswerController::class)->group(function () {

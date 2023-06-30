@@ -30,7 +30,9 @@ class AnswerController extends Controller
             return Response::message("Only admin can access");
         }
 
-        return DB::table("{$category}_answers")->where("user_id", $request->user_id)->get();
+        $result = DB::table("{$category}_answers")->where("user_id", $request->user_id)
+            ->orderBy("{$request->category}_question_id")->get();
+        return Response::success($result);
     }
 
     /**
@@ -73,8 +75,10 @@ class AnswerController extends Controller
             return Response::message("Only admin can access");
         }
 
-        return DB::table("{$category}_answers")
+        $result = DB::table("{$category}_answers")
             ->where("{$category}_question_id", $question_id)
             ->where("user_id", $request->user_id)->first();
+
+        return Response::success($result);
     }
 }

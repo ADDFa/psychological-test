@@ -22,6 +22,7 @@ class AuthController extends Controller
             "user"  => $user,
             "role"  => $role,
             "exp"   => $time + 3600
+            // "exp"   => $time + 20
         ];
         $refreshPayload = [
             "user"  => $user,

@@ -17,109 +17,109 @@ class Wu extends Seeder
     {
         DB::table("wu_image_questions")->insert([
             [
-                "question"  => "questions/question-image-wu1.jpg"
+                "question"  => "question-wu-image.jpg"
             ]
         ]);
 
         DB::table("wu_questions")->insert([
             [
-                "question"              => "questions/question-wu1.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu1.jpg",
+                "wu_image_question_id"  => 1,
                 "key"                   => md5("a")
             ],
             [
-                "question"              => "questions/question-wu2.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu2.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("c")
             ],
             [
-                "question"              => "questions/question-wu3.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu3.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("d")
             ],
             [
-                "question"              => "questions/question-wu4.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu4.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("e")
             ],
             [
-                "question"              => "questions/question-wu5.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu5.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("a")
             ],
             [
-                "question"              => "questions/question-wu6.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu6.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("c")
             ],
             [
-                "question"              => "questions/question-wu7.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu7.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("d")
             ],
             [
-                "question"              => "questions/question-wu8.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu8.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("c")
             ],
             [
-                "question"              => "questions/question-wu9.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu9.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("e")
             ],
             [
-                "question"              => "questions/question-wu10.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu10.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("a")
             ],
             [
-                "question"              => "questions/question-wu11.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu11.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("b")
             ],
             [
-                "question"              => "questions/question-wu12.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu12.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("d")
             ],
             [
-                "question"              => "questions/question-wu13.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu13.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("e")
             ],
             [
-                "question"              => "questions/question-wu14.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu14.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("b")
             ],
             [
-                "question"              => "questions/question-wu15.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu15.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("d")
             ],
             [
-                "question"              => "questions/question-wu16.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu16.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("b")
             ],
             [
-                "question"              => "questions/question-wu17.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu17.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("a")
             ],
             [
-                "question"              => "questions/question-wu18.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu18.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("e")
             ],
             [
-                "question"              => "questions/question-wu19.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu19.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("b")
             ],
             [
-                "question"              => "questions/question-wu20.jpg",
-                "question_wu_image_id"  => 1,
+                "question"              => "question-wu20.jpg",
+                "wu_image_question_id"  => 1,
                 "key"               => md5("c")
             ]
         ]);

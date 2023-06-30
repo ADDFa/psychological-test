@@ -12,7 +12,7 @@ class AnswerValidator
     public function questionExists($table, $id)
     {
         $this->data += ["question_id" => $id];
-        $this->rules = ["question_id" => "exists:$table,id"];
+        $this->rules += ["question_id" => "required|exists:$table,id"];
 
         return $this;
     }
@@ -21,7 +21,7 @@ class AnswerValidator
     {
         $this->data += ["answer" => $answer];
         $this->rules += ["answer" => [
-            "required",
+            "nullable",
             Rule::in(["a", "b", "c", "d", "e"])
         ]];
 
@@ -31,15 +31,15 @@ class AnswerValidator
     public function validString($answer)
     {
         $this->data += ["answer" => $answer];
-        $this->rules += ["answer" => "required|string"];
+        $this->rules += ["answer" => "nullable|string"];
 
         return $this;
     }
 
     public function validInteger($answer)
     {
-        $this->data = ["answer" => $answer];
-        $this->rules = ["answer" => "required|integer"];
+        $this->data += ["answer" => $answer];
+        $this->rules += ["answer" => "nullable|integer"];
 
         return $this;
     }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Response;
-use App\Models\QuestionCategory;
 use App\Models\Questions\PAPI;
 use Illuminate\Http\Request;
 
@@ -17,12 +16,7 @@ class PAPIController extends Controller
      */
     public function index()
     {
-        $result = [
-            "questions" => PAPI::all(),
-            "category"  => QuestionCategory::where("category", "papi")->first()
-        ];
-
-        return Response::success($result);
+        return Response::success(PAPI::all());
     }
 
     /**

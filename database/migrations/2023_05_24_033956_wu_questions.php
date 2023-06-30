@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create("wu_questions", function (Blueprint $table) {
             $table->id();
             $table->string("question"); // filename
-            $table->foreignId("question_wu_image_id")->constrained("wu_image_questions");
+            $table->foreignId("wu_image_question_id")->constrained("wu_image_questions");
             $table->string("key");
             $table->timestamps();
         });

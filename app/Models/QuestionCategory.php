@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class QuestionCategory extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = "category";
+    public $incrementing = false;
 }

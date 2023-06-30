@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create("question_categories", function (Blueprint $table) {
-            $table->id();
-            $table->enum("category", ["se", "wa", "an", "ge", "ra", "zr", "fa", "wu", "me", "msdt", "papi"])->unique();
+            $table->enum("category", ["se", "wa", "an", "ge", "ra", "zr", "fa", "wu", "me", "msdt", "papi"])->primary();
             $table->integer("time")->unsigned(); // seconds
+            $table->integer("total_question")->unsigned();
             $table->timestamps();
         });
     }

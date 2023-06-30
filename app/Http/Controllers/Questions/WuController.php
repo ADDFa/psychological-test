@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
-use App\Models\QuestionCategory;
 use App\Models\Questions\Wu;
 use Illuminate\Http\Request;
 
@@ -17,12 +16,7 @@ class WuController extends QuestionController
      */
     public function index()
     {
-        $result = [
-            "questions" => WU::all(),
-            "category"  => QuestionCategory::where("category", "wu")->first()
-        ];
-
-        return Response::success($result);
+        return Response::success(WU::all());
     }
 
     /**

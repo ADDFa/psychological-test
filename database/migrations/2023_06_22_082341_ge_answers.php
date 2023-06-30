@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId("ge_question_id")->constrained("ge_questions");
             $table->foreignId("user_id")->constrained("users");
-            $table->string("answer");
-            $table->enum("point", [0, 1, 2]);
+            $table->string("answer")->nullable();
+            $table->enum("point", [0, 1, 2])->default(0);
             $table->timestamps();
         });
     }

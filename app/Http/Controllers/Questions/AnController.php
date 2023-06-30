@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Questions;
 
 use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
-use App\Models\QuestionCategory;
 use App\Models\Questions\An;
 use Illuminate\Http\Request;
 
@@ -17,12 +16,7 @@ class AnController extends QuestionController
      */
     public function index()
     {
-        $result = [
-            "questions" => An::all(),
-            "category"  => QuestionCategory::where("category", "an")->first()
-        ];
-
-        return Response::success($result);
+        return Response::success(An::all());
     }
 
     /**
