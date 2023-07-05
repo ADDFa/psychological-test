@@ -118,9 +118,8 @@ class ISTScorring
         $scores = [];
         foreach ($this->istAnswerList as $istAnswerCategory) {
             if ($istAnswerCategory === "Ge") {
-                $point = "\App\Models\Answers\Ge"::where("user_id", $this->user->id)
-                    ->where("point", ">", 0)->get()->sum("point");
-                $conversion = \App\Models\QuestionGe\Conversion::where("total", $point)->value("conversion");
+                $point = "\App\Models\Answers\Ge"::where("user_id", $this->user->id)->get()->sum("point");
+                $conversion = \App\Models\QuestionGe\Conversion::where("total", $point)->value("conversion") || 0;
                 array_push($scores, $this->scoreBuilder($this->user->id, strtolower($istAnswerCategory), $conversion));
             } else {
                 $totalCorrect = "\App\Models\Answers\\$istAnswerCategory"::where("user_id", $this->user->id)
