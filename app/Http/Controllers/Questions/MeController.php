@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Questions;
 use App\Http\Controllers\QuestionController;
 use App\Http\Helper\Response;
 use App\Models\MeWord;
+use App\Models\MeWordDeadline;
 use App\Models\Questions\Me;
 use Illuminate\Http\Request;
 
@@ -54,8 +55,26 @@ class MeController extends QuestionController
         //
     }
 
-    public function words()
+    public function words(Request $request)
     {
-        return response()->json(MeWord::with("subWords")->get());
+        $userId = $request->user->id;
+        $deadline = MeWordDeadline::where("user_id", $userId)->first();
+
+        if (!$deadline) {
+            $deadline = new MeWordDeadline([
+                "user_id"   => $userId,
+                "deadline"  => time() + 180
+            ]);
+            $deadline->save();
+        }
+
+        if ($deadline->deadline < time()) {
+            return Response::message("Time Expired", 408);
+        }
+
+        return Response::success([
+            "words"     => MeWord::with("subWords")->get(),
+            "deadline"  => $deadline
+        ]);
     }
 }

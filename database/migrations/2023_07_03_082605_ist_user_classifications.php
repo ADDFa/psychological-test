@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("user_test", function (Blueprint $table) {
+        Schema::create("ist_user_classifications", function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained("users");
-            $table->foreignId("exam_id")->constrained("exams");
+            $table->enum("comprehension", [1, 2, 3, 4, 5]);
+            $table->enum("problem_analysis", [1, 2, 3, 4, 5]);
+            $table->enum("flexibility_of_thinking", [1, 2, 3, 4, 5]);
+            $table->enum("verbal_logic", [1, 2, 3, 4, 5]);
+            $table->enum("memory_and_concentration", [1, 2, 3, 4, 5]);
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("user_test");
+        Schema::dropIfExists("ist_user_classifications");
     }
 };

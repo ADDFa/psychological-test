@@ -15,9 +15,9 @@ class Exams extends Seeder
     public function run()
     {
         DB::table("exams")->insert([
-            ["exam" => "ist"],
-            ["exam" => "msdt"],
-            ["exam" => "papi"]
+            ["exam" => "ist", "active" => true],
+            ["exam" => "msdt", "active" => false],
+            ["exam" => "papi", "active" => false]
         ]);
     }
 }

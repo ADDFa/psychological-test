@@ -47,7 +47,11 @@ class DatabaseSeeder extends Seeder
 
             // TODO: Question Ge
             Keys::class,
-            Conversions::class
+            Conversions::class,
+
+            // TODO: Assesment
+            ISTNormas::class,
+            IQNormas::class
         ]);
     }
 }

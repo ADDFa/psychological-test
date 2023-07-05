@@ -13,4 +13,9 @@ class Se extends Model
     protected $table = "se_questions";
     protected $hidden = ["key"];
     protected $guarded = ["id"];
+
+    public function answer()
+    {
+        return $this->hasOne(AnswersSe::class, "se_question_id");
+    }
 }

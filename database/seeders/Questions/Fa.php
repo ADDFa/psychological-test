@@ -126,7 +126,7 @@ class Fa extends Seeder
             [
                 "question"              => "question-fa20.jpg",
                 "fa_image_question_id"  => 2,
-                "key"               => md5("a")
+                "key"               => md5("c")
             ]
         ]);
     }

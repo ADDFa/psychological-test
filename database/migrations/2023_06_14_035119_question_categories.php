@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create("question_categories", function (Blueprint $table) {
             $table->enum("category", ["se", "wa", "an", "ge", "ra", "zr", "fa", "wu", "me", "msdt", "papi"])->primary();
+            $table->foreignId("exam_id")->constrained("exams");
             $table->integer("time")->unsigned(); // seconds
             $table->integer("total_question")->unsigned();
             $table->timestamps();

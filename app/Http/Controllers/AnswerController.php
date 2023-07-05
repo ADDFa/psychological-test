@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Helper\Response;
 use App\Models\Credential;
+use App\Models\UserTest;
+use App\Models\UserTestDeadline;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -47,6 +49,13 @@ class AnswerController extends Controller
             "category" => "required|exists:question_categories,category"
         ]);
         if ($validator->fails()) return Response::errors($validator);
+
+        $userTest = UserTest::where("user_id", $request->user->id)->first();
+        $userTestDeadline = UserTestDeadline::where("user_test_id", $userTest->id)
+            ->where("question_category", $request->category)->first();
+        if ($userTestDeadline->deadline < time()) {
+            return Response::message("Waktu Ujian Habis", 408);
+        }
 
         $controller = ucwords($request->category) . "Controller";
         return app()->call("\App\Http\Controllers\Answers\\{$controller}@store", [

@@ -90,7 +90,7 @@ class An extends Seeder
                 "option_c"          => "Menilai",
                 "option_d"          => "Menimbang",
                 "option_e"          => "Merenungkan",
-                "key"               => md5("a")
+                "key"               => md5("b")
             ],
 
             // 7

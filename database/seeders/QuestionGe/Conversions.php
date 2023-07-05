@@ -138,6 +138,10 @@ class Conversions extends Seeder
             [
                 "total"         => 31,
                 "conversion"    => 20
+            ],
+            [
+                "total"         => 32,
+                "conversion"    => 20
             ]
         ]);
     }

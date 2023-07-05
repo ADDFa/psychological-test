@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("user_test", function (Blueprint $table) {
+        Schema::create("ist_scores", function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained("users");
-            $table->foreignId("exam_id")->constrained("exams");
+            $table->enum("question_category", ["se", "wa", "an", "ge", "ra", "zr", "fa", "wu", "me"]);
+            $table->foreign("question_category")->references("category")->on("question_categories");
+            $table->integer("rw_score")->unsigned();
+            $table->integer("sw_score")->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("user_test");
+        Schema::dropIfExists("ist_scores");
     }
 };

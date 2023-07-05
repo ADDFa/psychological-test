@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("user_test", function (Blueprint $table) {
+        Schema::create("me_word_deadlines", function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained("users");
-            $table->foreignId("exam_id")->constrained("exams");
+            $table->bigInteger("deadline")->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("user_test");
+        Schema::dropIfExists("me_word_deadlines");
     }
 };

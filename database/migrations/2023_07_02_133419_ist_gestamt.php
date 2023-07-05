@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("user_test", function (Blueprint $table) {
+        Schema::create("ist_gestamt", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained("users");
-            $table->foreignId("exam_id")->constrained("exams");
+            $table->integer("rw")->unsigned();
+            $table->integer("sw")->unsigned();
+            $table->set("ages", [20, 21, 22, 23, 24, 25])->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("user_test");
+        Schema::dropIfExists("ist_gestamt");
     }
 };

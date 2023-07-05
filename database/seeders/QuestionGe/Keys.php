@@ -202,13 +202,13 @@ class Keys extends Seeder
             // 6 - value 2
             [
                 "ge_question_id"   => 6,
-                "key"           => "optic",
+                "key"           => "optik",
                 "point"         => "2"
             ],
 
             [
                 "ge_question_id"   => 6,
-                "key"           => "alat optic",
+                "key"           => "alat optik",
                 "point"         => "2"
             ],
 
@@ -336,7 +336,7 @@ class Keys extends Seeder
             // 10 - value 2
             [
                 "ge_question_id"   => 10,
-                "key"           => "symbol",
+                "key"           => "simbol",
                 "point"         => "2"
             ],
 

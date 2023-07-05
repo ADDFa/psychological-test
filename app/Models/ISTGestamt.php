@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TestParticipant extends Model
+class ISTGestamt extends Model
 {
     use HasFactory;
 
-    public function user()
-    {
-        return $this->belongsTo("users");
-    }
+    protected $table = "ist_gestamt";
 }

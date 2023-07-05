@@ -7,6 +7,7 @@ use App\Http\Controllers\QuestionCategoryController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\Questions\MeController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserTestController;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,8 @@ Route::middleware(AuthMiddleware::class)->group(function () {
         Route::get("/exam", "index");
         Route::get("/exam/{exam}", "show");
         Route::post("/exam/{category}/do-the-exam", "doTheExam");
+        Route::get("/exam/{exam}/score", "score"); // only user access | middleware belum ada
+        Route::get("/user-score", "userScore"); // only admin access | middleware belum ada
     });
 
     Route::controller(QuestionCategoryController::class)->group(function () {
@@ -55,5 +58,9 @@ Route::middleware(AuthMiddleware::class)->group(function () {
 
     Route::controller(TestController::class)->group(function () {
         Route::post("/test", "store");
+    });
+
+    Route::controller(UserTestController::class)->group(function () {
+        Route::get("/user-test", "index"); // only admin | middleware belun
     });
 });
