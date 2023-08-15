@@ -8,4 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasFactory;
+
+    public function userTest()
+    {
+        return $this->hasOne(UserTest::class);
+    }
 }

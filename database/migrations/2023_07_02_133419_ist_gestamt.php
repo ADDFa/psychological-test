@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer("rw")->unsigned();
             $table->integer("sw")->unsigned();
-            $table->set("ages", [20, 21, 22, 23, 24, 25])->nullable();
+            $table->set("ages", [21, 22, 23, 24, 25, 26, 27, 28, 29, 30])->nullable();
             $table->timestamps();
         });
     }

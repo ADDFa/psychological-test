@@ -32,9 +32,10 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     Route::controller(ExamController::class)->group(function () {
         Route::get("/exam", "index");
         Route::get("/exam/{exam}", "show");
-        Route::post("/exam/{category}/do-the-exam", "doTheExam");
-        Route::get("/exam/{exam}/score", "score"); // only user access | middleware belum ada
-        Route::get("/user-score", "userScore"); // only admin access | middleware belum ada
+        Route::post("/exam/{category}/do-the-exam", "doTheExam"); // only user access | middleware belum ada
+        // Route::get("/exam/{exam}/score", "score"); // only user access | middleware belum ada
+        // Route::get("/user-score", "userScore"); // only admin access | middleware belum ada
+        Route::patch("/exam/toggle/{exam}", "toggle");
     });
 
     Route::controller(QuestionCategoryController::class)->group(function () {
@@ -61,6 +62,6 @@ Route::middleware(AuthMiddleware::class)->group(function () {
     });
 
     Route::controller(UserTestController::class)->group(function () {
-        Route::get("/user-test", "index"); // only admin | middleware belun
+        Route::get("/user-test", "index"); // only admin | middleware belum
     });
 });

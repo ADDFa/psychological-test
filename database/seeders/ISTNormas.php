@@ -130,26 +130,30 @@ class ISTNormas extends Seeder
 
         DB::table("ist_normas")->insert($istNormas);
 
-        function gestamtBuilder(array $swCollection, array $ages = [21, 22, 23, 24, 25])
+        function gestamtBuilder(array $swCollection, string $ages)
         {
             $result = [];
-            for ($i = 1; $i <= 18; $i++) {
+            foreach ($swCollection as $index => $sw) {
                 array_push($result, [
-                    "rw"        => $i * 10,
-                    "sw"        => $swCollection[$i - 1],
-                    "ages"      => implode(",", $ages)
+                    "rw"    => $index * 10,
+                    "sw"    => $sw,
+                    "ages"  => $ages
                 ]);
             }
 
             return $result;
         }
 
-        DB::table("ist_gestamt")->insert(gestamtBuilder([
-            67, 70, 74, 78, 82,
-            86, 90, 93, 97, 101,
-            105, 109, 113, 117, 120,
-            124, 128, 132
-        ]));
+        $gestamt = gestamtBuilder(
+            [
+                67, 70, 74, 78, 82,
+                86, 90, 93, 97, 101,
+                105, 109, 113, 117, 120,
+                124, 128, 132
+            ],
+            "21,22,23,24,25"
+        );
+        DB::table("ist_gestamt")->insert($gestamt);
 
         DB::table("ist_normas")->insert([
             // norma ist kategori se untuk usia 26 - 30
@@ -360,11 +364,15 @@ class ISTNormas extends Seeder
             builder(20, 131, "wu", [26, 27, 28, 29, 30]),
         ]);
 
-        DB::table("ist_gestamt")->insert(gestamtBuilder([
-            67, 71, 75, 79, 83,
-            87, 90, 94, 98, 102,
-            106, 110, 113, 117, 121,
-            125, 129, 132
-        ]));
+        $gestamt = gestamtBuilder(
+            [
+                67, 71, 75, 79, 83,
+                87, 90, 94, 98, 102,
+                106, 110, 113, 117, 121,
+                125, 129, 132
+            ],
+            "26,27,28,29,30"
+        );
+        DB::table("ist_gestamt")->insert($gestamt);
     }
 }

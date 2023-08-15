@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helper\Response;
+use App\Models\User;
 use App\Models\UserTest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,9 +15,21 @@ class UserTestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return UserTest::with("user")->get();
+        $validator = Validator::make($request->all(), [
+            "from"  => "integer|exists:users,id"
+        ]);
+        if ($validator->fails()) return Response::errors($validator);
+
+        $limit = 2;
+        $result = User::with("userTest");
+
+        if ($request->from) {
+            $result->where("id", "<", $request->from);
+        }
+
+        return $result->orderBy("id", "desc")->limit($limit)->get();
     }
 
     /**
@@ -47,17 +60,6 @@ class UserTestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

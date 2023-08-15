@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer("sw")->unsigned();
             $table->integer("iq")->unsigned();
             $table->integer("percentage")->unsigned();
+            $table->string("category");
             $table->timestamps();
         });
     }

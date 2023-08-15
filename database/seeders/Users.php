@@ -34,8 +34,8 @@ class Users extends Seeder
         DB::table("credentials")->insert([
             [
                 "user_id"   => 1,
-                "username"  => "admin",
-                "password"  => password_hash("password", PASSWORD_DEFAULT),
+                "username"  => "aku-ada",
+                "password"  => password_hash("cuma-aku-ada", PASSWORD_DEFAULT),
                 "role"      => "admin"
             ],
             [

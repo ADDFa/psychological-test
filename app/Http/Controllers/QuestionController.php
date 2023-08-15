@@ -10,8 +10,7 @@ class QuestionController extends Controller
 {
     public function getQuestionByCategory(QuestionCategory $category)
     {
-        $controller = ucwords($category) . "Controller";
-        return app()->call("\App\Http\Controllers\Questions\\{$controller}@index");
+        return Response::success($category);
     }
 
     public function getQuestionImage($fileName)

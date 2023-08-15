@@ -3,6 +3,8 @@
 namespace App\Objects;
 
 use App\Http\Helper\Response;
+use App\Models\Answers\Ge;
+use App\Models\GeConversion;
 use App\Models\IQNorma;
 use App\Models\IQUser;
 use App\Models\ISTClassification;
@@ -15,8 +17,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class ISTScorring
 {
     protected $user = null, $norma = null, $userAge = 0;
-    protected array $userAnswers = [], $istAnswerList = ["Se", "Wa", "An", "Ra", "Zr", "Fa", "Wu", "Me", "Ge"], $scores = [];
-    protected string $userAgeBetween = "21,22,23,24,25";
+    protected $userAnswers = [], $istAnswerList = ["Se", "Wa", "An", "Ra", "Zr", "Fa", "Wu", "Me", "Ge"], $scores = [];
+    protected $userAgeBetween = "21,22,23,24,25";
 
     private function initialize(int $userId)
     {
@@ -32,18 +34,13 @@ class ISTScorring
 
     private function generateUserAgeBetween()
     {
-        $year = date("Y");
+        $now = date("Y");
         $yearOfBirth = date("Y", strtotime($this->user->date_of_birth));
-        $age = $year - $yearOfBirth;
+        $age = $now - $yearOfBirth;
 
         $userAge = floor($age / 5) * 5;
-        $userAgeBetween = "";
-        for ($i = 1; $i <= 5; $i++) {
-            $userAgeBetween .= $userAge + $i;
-            if ($i < 5) $userAgeBetween .= ",";
-        }
 
-        $this->userAgeBetween = $userAgeBetween;
+        if ($userAge > 4) $this->userAgeBetween = "26,27,28,29,30";
     }
 
     private function scoreBuilder($userId, $category, $rw)
@@ -64,22 +61,24 @@ class ISTScorring
     private function setNorma()
     {
         $norma = ISTNorma::where("ages", $this->userAgeBetween)->first();
-        if (!$norma) $this->userAgeBetween = "26,27,28,29,30";
-        $norma = ISTNorma::where("ages", $this->userAgeBetween)->first();
-
         $this->norma = $norma;
     }
 
     private function initializeUserAnswers()
     {
         foreach ($this->istAnswerList as $answer) {
+            $score = 0;
             if ($answer !== "Ge") {
-                $userAnswer = "\App\Models\Answers\\$answer"::where("user_id", $this->user->id)->where("correct", true)->count();
-                array_push($this->userAnswers, [
-                    "category"  => $answer,
-                    "answers"   => $userAnswer
-                ]);
+                $score = "\App\Models\Answers\\$answer"::where("user_id", $this->user->id)->where("correct", true)->count();
+            } else {
+                $totalGe = Ge::where("user_id", $this->user->id)->select("SUM(total) as total_score")->value("total_score");
+                $score = GeConversion::where("total", $totalGe)->value("conversion");
             }
+
+            array_push($this->userAnswers, [
+                "category"  => $answer,
+                "answers"   => $score
+            ]);
         }
     }
 
@@ -118,8 +117,9 @@ class ISTScorring
         $scores = [];
         foreach ($this->istAnswerList as $istAnswerCategory) {
             if ($istAnswerCategory === "Ge") {
-                $point = "\App\Models\Answers\Ge"::where("user_id", $this->user->id)->get()->sum("point");
-                $conversion = \App\Models\QuestionGe\Conversion::where("total", $point)->value("conversion") || 0;
+                $point = \App\Models\Answers\Ge::where("user_id", $this->user->id)->get()->sum("point") || 0;
+                $conversion = \App\Models\QuestionGe\Conversion::where("total", $point)->value("conversion");
+                if ($conversion === null) $conversion = 0;
                 array_push($scores, $this->scoreBuilder($this->user->id, strtolower($istAnswerCategory), $conversion));
             } else {
                 $totalCorrect = "\App\Models\Answers\\$istAnswerCategory"::where("user_id", $this->user->id)
