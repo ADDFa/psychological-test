@@ -65,6 +65,6 @@ Route::middleware(AuthMiddleware::class)->group(function () {
 
     Route::controller(UserTestController::class)->group(function () {
         // Route::get("/user-test", "index"); // only admin | middleware belum
-        Route::get("/user-test/register", "store");
+        Route::post("/user-test/register", "store");
     });
 });

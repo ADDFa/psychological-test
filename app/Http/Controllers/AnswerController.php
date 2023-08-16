@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helper\Response;
+use App\Models\Answers\PAPI as AnswersPAPI;
 use App\Models\Credential;
+use App\Models\Questions\PAPI;
 use App\Models\UserTest;
 use App\Models\UserTestDeadline;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AnswerController extends Controller
 {
@@ -47,14 +50,34 @@ class AnswerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "category"  => "required|exists:question_categories,category",
-            "answer"    => "required|string"
+            "answer"    => [
+                "required",
+                Rule::in(["A", "B"])
+            ],
+            "question_id" => "required|exists:papi_questions,id",
+            "user_id" => "required|exists:users,id",
         ]);
         if ($validator->fails()) return Response::errors($validator);
 
-        return [
-            "category"  => $request->category,
-            "answer"    => $request->answer
-        ];
+        switch ($request->category) {
+            case "papi":
+                $question_id = PAPI::find($request->question_id);
+                if ($question_id) {
+                    $answer = AnswersPAPI::updateOrCreate(
+                        [
+                            "question_id" => $request->question_id,
+                            "user_id" => $request->user_id,
+                        ],
+                        [
+                            "answer" => $request->answer,
+                        ]
+                    );
+                    $answer->save();
+                }
+                break;
+        }
+
+        return Response::success($answer);
 
         // $userTest = UserTest::where("user_id", $request->user->id)->first();
         // $userTestDeadline = UserTestDeadline::where("user_test_id", $userTest->id)
