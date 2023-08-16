@@ -78,18 +78,6 @@ class AnswerController extends Controller
         }
 
         return Response::success($answer);
-
-        // $userTest = UserTest::where("user_id", $request->user->id)->first();
-        // $userTestDeadline = UserTestDeadline::where("user_test_id", $userTest->id)
-        //     ->where("question_category", $request->category)->first();
-        // if ($userTestDeadline->deadline < time()) {
-        //     return Response::message("Waktu Ujian Habis", 408);
-        // }
-
-        // $controller = ucwords($request->category) . "Controller";
-        // return app()->call("\App\Http\Controllers\Answers\\{$controller}@store", [
-        //     "category" => $request->category
-        // ]);
     }
 
     /**
