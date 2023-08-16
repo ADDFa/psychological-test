@@ -9,6 +9,7 @@ use App\Http\Controllers\Questions\MeController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserTestController;
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\UserTest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,37 +32,39 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware(AuthMiddleware::class)->group(function () {
     Route::controller(ExamController::class)->group(function () {
         Route::get("/exam", "index");
-        Route::get("/exam/{exam}", "show");
-        Route::post("/exam/{category}/do-the-exam", "doTheExam"); // only user access | middleware belum ada
+        Route::patch("/exam/toggle/{exam}", "toggle");
+        // Route::get("/exam/{exam}", "show");
+        // Route::post("/exam/{category}/do-the-exam", "doTheExam"); // only user access | middleware belum ada
         // Route::get("/exam/{exam}/score", "score"); // only user access | middleware belum ada
         // Route::get("/user-score", "userScore"); // only admin access | middleware belum ada
-        Route::patch("/exam/toggle/{exam}", "toggle");
     });
 
-    Route::controller(QuestionCategoryController::class)->group(function () {
-        Route::get("/question-category/{category}", "show");
-    });
+    // Route::controller(QuestionCategoryController::class)->group(function () {
+    //     Route::get("/question-category/{category}", "show");
+    // });
 
     Route::controller(QuestionController::class)->group(function () {
-        Route::get("/question/{category}", "getQuestionByCategory");
+        Route::get("/question/{category}", "index")->middleware(UserTest::class);
         Route::get("/question/image/{fileName}", "getQuestionImage");
+        // Route::get("/question/{category}", "getQuestionByCategory");
     });
 
     Route::controller(AnswerController::class)->group(function () {
-        Route::get("/answer/{category}", "index");
-        Route::get("/answer/{category}/{question_id}", "show");
-        Route::post("/answer", "store");
+        // Route::get("/answer/{category}", "index");
+        // Route::get("/answer/{category}/{question_id}", "show");
+        Route::post("/answer", "store")->middleware(UserTest::class);
     });
 
-    Route::controller(MeController::class)->group(function () {
-        Route::get("/me-words", "words");
-    });
+    // Route::controller(MeController::class)->group(function () {
+    //     Route::get("/me-words", "words");
+    // });
 
-    Route::controller(TestController::class)->group(function () {
-        Route::post("/test", "store");
-    });
+    // Route::controller(TestController::class)->group(function () {
+    //     Route::post("/test", "store");
+    // });
 
     Route::controller(UserTestController::class)->group(function () {
-        Route::get("/user-test", "index"); // only admin | middleware belum
+        // Route::get("/user-test", "index"); // only admin | middleware belum
+        Route::get("/user-test/register", "store");
     });
 });

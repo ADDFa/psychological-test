@@ -15,22 +15,22 @@ class UserTestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            "from"  => "integer|exists:users,id"
-        ]);
-        if ($validator->fails()) return Response::errors($validator);
+    // public function index(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         "from"  => "integer|exists:users,id"
+    //     ]);
+    //     if ($validator->fails()) return Response::errors($validator);
 
-        $limit = 2;
-        $result = User::with("userTest");
+    //     $limit = 2;
+    //     $result = User::with("userTest");
 
-        if ($request->from) {
-            $result->where("id", "<", $request->from);
-        }
+    //     if ($request->from) {
+    //         $result->where("id", "<", $request->from);
+    //     }
 
-        return $result->orderBy("id", "desc")->limit($limit)->get();
-    }
+    //     return $result->orderBy("id", "desc")->limit($limit)->get();
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -51,39 +51,5 @@ class UserTestController extends Controller
             "exam_id"   => $request->exam_id
         ]);
         return Response::success($userTest->save());
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
