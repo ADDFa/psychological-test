@@ -75,25 +75,25 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $category, $question_id)
-    {
-        $data = $request->all() + ["category" => $category];
-        $validator = Validator::make($data, [
-            "category"  => "required|exists:question_categories,category",
-            "user_id"   => "required|exists:users,id"
-        ]);
-        if ($validator->fails()) return Response::errors($validator);
+    // public function show(Request $request, $category, $question_id)
+    // {
+    //     $data = $request->all() + ["category" => $category];
+    //     $validator = Validator::make($data, [
+    //         "category"  => "required|exists:question_categories,category",
+    //         "user_id"   => "required|exists:users,id"
+    //     ]);
+    //     if ($validator->fails()) return Response::errors($validator);
 
-        // admin validator
-        $credential = Credential::where("user_id", $request->user->id)->first();
-        if ($credential->role === "user" && intval($request->user_id) !== $request->user->id) {
-            return Response::message("Only admin can access");
-        }
+    //     // admin validator
+    //     $credential = Credential::where("user_id", $request->user->id)->first();
+    //     if ($credential->role === "user" && intval($request->user_id) !== $request->user->id) {
+    //         return Response::message("Only admin can access");
+    //     }
 
-        $result = DB::table("{$category}_answers")
-            ->where("{$category}_question_id", $question_id)
-            ->where("user_id", $request->user_id)->first();
+    //     $result = DB::table("{$category}_answers")
+    //         ->where("{$category}_question_id", $question_id)
+    //         ->where("user_id", $request->user_id)->first();
 
-        return Response::success($result);
-    }
+    //     return Response::success($result);
+    // }
 }
